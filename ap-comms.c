@@ -314,7 +314,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _U2ErrInterrupt(void)
 	static BYTE b_temp;
 	static WORD w_temp;
 
-	_U2EIF = 0;				//Reset irq flag
+	COMMS_ERROR_IRQ = 0;				//Reset irq flag
 
 
 	if (COMMS_STATUS_REG_BITS.OERR)
