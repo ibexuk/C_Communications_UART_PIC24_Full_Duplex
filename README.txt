@@ -5,8 +5,4 @@
 ######################################################################
 
 
-This is a general use PIC24 comms UART handler.
-
-The driver is full duplex bus so TX and RX can occur independantly
-
-It automatically deals with variable packet length by including a length value in the packet.  It also automatically adds simple checksumming of the packet.
+Visit http://www.embedded-code.com/source-code/communications/uart/pic24-uart-full-duplex for project information

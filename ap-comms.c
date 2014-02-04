@@ -24,6 +24,8 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
+//Visit http://www.embedded-code.com/source-code/communications/uart/pic24-uart-full-duplex for more information
+//
 //Project Name:		PIC24 Full duplex UART Driver
 
 
@@ -212,14 +214,17 @@ void __attribute__((__interrupt__,__auto_psv__)) _U2RXInterrupt(void)
 
 
 	if (comms_rx_1ms_timeout_timer == 0)
+	{
 		comms_rx_byte = 0;
+		comms_rx_no_of_bytes_to_rx = 0xffff;		//Reset to waiting for rx
+	}
 
 	if ((COMMS_STATUS_REG_BITS.FERR == 0) && (COMMS_STATUS_REG_BITS.PERR == 0) && (COMMS_STATUS_REG_BITS.OERR == 0))
 	{
 		//--------------------
 		//----- RX IS OK -----
 		//--------------------
-		comms_rx_1ms_timeout_timer = 50;			//<<<Force new packet reset if no data seen for # mS
+		comms_rx_1ms_timeout_timer = 50;			//<<<Force new packet reset if no data seen for # mS <<<<<<<<<<<<<<<<<<<<SET THIS SO RESET WILL OCCURS BETWEEN PACKETS IF WE START RECEIVEING AT THE WRONG MOMENT
 
 		rx_data = COMMS_RX_REG;
 
